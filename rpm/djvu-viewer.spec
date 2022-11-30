@@ -11,7 +11,7 @@ BuildRequires: pkgconfig(Qt5DBus)
 BuildRequires: pkgconfig(Qt5Xml)
 BuildRequires: pkgconfig(sailfishsilica) >= 1.1.8
 BuildRequires: libqt5sparql-devel
-BuildRequires: poppler-qt5-devel poppler-qt5 poppler-devel poppler
+#BuildRequires: poppler-qt5-devel poppler-qt5 poppler-devel poppler
 BuildRequires: mapplauncherd-qt5-devel
 BuildRequires: cmake
 BuildRequires: qt5-qttools-linguist
@@ -43,31 +43,34 @@ Requires: declarative-transferengine-qt5 >= 0.3.1
 Requires: libjpeg-turbo
 Requires: libtiff
 
-%package ts-devel
-Summary: Translation source for %{name}
-License: GPLv2
+#%package ts-devel
+#Summary: Translation source for %{name}
+#License: GPLv2
 
 
 %description
 %{summary}.
 
-%description ts-devel
-%{summary}.
+#%description ts-devel
+#%{summary}.
 
 
 %files
 %defattr(-,root,root,-)
 #%license LICENSE
 %{_bindir}/*
-%{_libdir}/qt5/qml/DjVu/Viewer/
-%{_libdir}
 %{_datadir}/applications/*.desktop
 %{_datadir}/%{name}/
 %{_datadir}/translations/*.qm
 %{_datadir}/mapplauncherd/privileges.d/djvu-viewer.privileges
+%{_datadir}/icons/hicolor/86x86/apps/%{name}.png
+%{_datadir}/icons/hicolor/108x108/apps/%{name}.png
+%{_datadir}/icons/hicolor/128x128/apps/%{name}.png
+%{_datadir}/icons/hicolor/172x172/apps/%{name}.png
+#\%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
 
-%files ts-devel
-%{_datadir}/translations/source/*.ts
+#%files ts-devel
+#%{_datadir}/translations/source/*.ts
 
 
 %prep
@@ -83,5 +86,5 @@ make %{?_smp_mflags}
 make DESTDIR=%{buildroot} install
 
 
-%post
-/usr/bin/update-desktop-database -q
+#%post
+#/usr/bin/update-desktop-database -q

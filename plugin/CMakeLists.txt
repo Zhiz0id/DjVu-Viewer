@@ -15,7 +15,7 @@ add_library(djvuviewerplugin MODULE ${plugin_SRCS})
 qt5_use_modules(djvuviewerplugin Widgets Quick)
 target_link_libraries(djvuviewerplugin stdc++ ${QT_LIBRARIES} ${SAILFISHSILICA_LIBRARIES} ${ICU_LIBRARIES})
 
-install(TARGETS djvuviewerplugin DESTINATION ${CMAKE_INSTALL_LIBDIR}/qt5/qml/DjVu/Viewer)
+install(TARGETS djvuviewerplugin DESTINATION /usr/share/djvu-viewer/qml/DjVu/Viewer)
 
 install(FILES
     qmldir
@@ -44,5 +44,5 @@ install(FILES
     SearchBarItem.qml
     ShareButton.qml
     ToolBar.qml
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/qt5/qml/DjVu/Viewer
+    DESTINATION /usr/share/djvu-viewer/qml/DjVu/Viewer
 )

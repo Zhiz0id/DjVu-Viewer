@@ -96,7 +96,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // will get terribly confused when they fail to load properly.
     app->setOrganizationName("org.djvu");
     app->setApplicationName("Viewer");
-
     auto view = createView("Main.qml");
 
     //% "Documents"

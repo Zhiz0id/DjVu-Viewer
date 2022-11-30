@@ -253,7 +253,7 @@ Page {
             onClicked: {
                 switch(model.fileDocumentClass) {
                 case DocumentListModel.DJVUDocument:
-                    pageStack.animatorPush("DjVu.Viewer.DJVUDocumentPage",
+                    pageStack.animatorPush("/usr/share/djvu-viewer/qml/DjVu/Viewer/DJVUDocumentPage.qml",
                                            { title: model.fileName, source: model.filePath, mimeType: model.fileMimeType, provider: page.provider })
                     break
                 default:

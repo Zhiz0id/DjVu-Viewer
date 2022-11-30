@@ -8,6 +8,14 @@ include(ExternalProject)
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 set(CMAKE_AUTOMOC TRUE)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+#list(APPEND QML_IMPORT_PATH "/usr/share/djvu-view/qml")
+#list(REMOVE_DUPLICATES QML_IMPORT_PATH)
+#set(QML_IMPORT_PATH ${QML_IMPORT_PATH}
+#    CACHE STRING "extra qml import paths"
+#    FORCE
+#)
+#set(QML_IMPORT_PATH /usr/share/djvu-view/qml CACHE STRING "" FORCE) 
+#set(QT_QML_OUTPUT_DIRECTORY /usr/share/djvu-viewer)
 #cmake_policy(SET CMP0002 OLD)
 
 find_package(Qt5Core REQUIRED)
@@ -28,6 +36,10 @@ include_directories(
     ${QTSPARQL_INCLUDE_DIR}
 )
 
+# paths
+set(AURORAOS_SHARED_LIBRARY_DIR /usr/share/djvu-viewer/lib/)
+
+
 # libdjvu
 set(djvulibre_prefix ${CMAKE_HOME_DIRECTORY}/dependencies/djvulibre)
 set(djvulibre_configure ${djvulibre_prefix}/autogen.sh)
@@ -45,14 +57,14 @@ ExternalProject_Add(djvulibre
    )
 
 include_directories(${djvulibre_prefix})
-add_library(djvulibre_lib SHARED IMPORTED)
+add_library(djvulibre_lib STATIC IMPORTED)
 add_dependencies(djvulibre_lib djvulibre)
 set_target_properties(djvulibre_lib PROPERTIES IMPORTED_LOCATION ${djvulibre_lib_dir}/libdjvulibre.so)
 install(FILES
     ${djvulibre_lib_dir}/libdjvulibre.so
     ${djvulibre_lib_dir}/libdjvulibre.so.21
     ${djvulibre_lib_dir}/libdjvulibre.so.21.7.0
-    DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    DESTINATION ${AURORAOS_SHARED_LIBRARY_DIR})
 # end of libdjvu
 
 #set(CALLIGRA_QML_PLUGIN_DIR ${CMAKE_INSTALL_LIBDIR}/calligra CACHE PATH "The location of the Calligra QtQuick Components")
@@ -99,9 +111,24 @@ install(TARGETS djvu-viewer DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 install(FILES
     djvu-viewer.desktop
     DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications)
-install(FILES ${djvuviewer_QML_SRCS} DESTINATION ${CMAKE_INSTALL_PREFIX}/share/djvu-viewer
+install(FILES ${djvuviewer_QML_SRCS} DESTINATION ${CMAKE_INSTALL_PREFIX}/share/djvu-viewer/qml
 )
 install(FILES ${engen_qm_file} DESTINATION ${CMAKE_INSTALL_PREFIX}/share/translations)
-install(FILES ${CMAKE_BINARY_DIR}/djvu-viewer.ts DESTINATION ${CMAKE_INSTALL_PREFIX}/share/translations/source)
+#install(FILES ${CMAKE_BINARY_DIR}/djvu-viewer.ts DESTINATION ${CMAKE_INSTALL_PREFIX}/share/translations/source)
 install(FILES djvu-viewer.privileges DESTINATION ${CMAKE_INSTALL_PREFIX}/share/mapplauncherd/privileges.d)
+
+install(FILES icons/86x86/djvu-viewer.png
+DESTINATION share/icons/hicolor/86x86/apps)
+
+install(FILES icons/108x108/djvu-viewer.png
+DESTINATION share/icons/hicolor/108x108/apps)
+
+install(FILES icons/128x128/djvu-viewer.png
+DESTINATION share/icons/hicolor/128x128/apps)
+
+#install(FILES icons/256x256/djvu-viewer.png
+#DESTINATION share/icons/hicolor/256x256/apps)
+
+install(FILES icons/172x172/djvu-viewer.png
+DESTINATION share/icons/hicolor/172x172/apps)
 
