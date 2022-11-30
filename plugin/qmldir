@@ -1,0 +1,3 @@
+module DjVu.Viewer
+DJVUDocumentPage 1.0 DJVUDocumentPage.qml
+plugin djvuviewerplugin

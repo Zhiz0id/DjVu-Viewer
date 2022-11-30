@@ -1,0 +1,3 @@
+[submodule "dependencies/djvulibre"]
+	path = dependencies/djvulibre
+	url = https://git.code.sf.net/p/djvu/djvulibre-git
