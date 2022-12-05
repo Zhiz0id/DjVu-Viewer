@@ -21,7 +21,7 @@
 #include <QtQml/QtQml>
 
 #include <QTranslator>
-#include <QApplication>
+//#include <QApplication>
 
 //#include "plaintextmodel.h"
 

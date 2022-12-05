@@ -5,7 +5,8 @@ X-Amber-Translation-Id-Name=djvu-viewer-ap-name
 X-Amber-Translation-Catalog=djvu-viewer
 X-Nemo-Application-Type=silica-qt5
 Icon=djvu-viewer
-Exec=env LD_LIBRARY_PATH=/usr/share/djvu-viewer/lib/ QML2_IMPORT_PATH=/usr/share/djvu-viewer/qml/ /usr/bin/djvu-viewer %U
+#Exec=env LD_LIBRARY_PATH=/usr/share/djvu-viewer/lib/ QML2_IMPORT_PATH=/usr/share/djvu-viewer/qml/ /usr/bin/djvu-viewer %U
+Exec=/usr/bin/djvu-viewer %U
 DBusActivatable=true
 MimeType=image/vnd.djvu;image/vnd.djvu+multipage;image/x.djvu;image/x-djvu;
 Comment=DjVu Viewer

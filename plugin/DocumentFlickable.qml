@@ -18,14 +18,14 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import Sailfish.Silica.private 1.0
+//import Sailfish.Silica.private 1.0
 
 SilicaFlickable {
     id: flickable
 
     readonly property bool zoomed: contentWidth > width
-    property alias pinchArea: pinchArea
-    default property alias foreground: pinchArea.data
+    //property alias pinchArea: pinchArea
+    //default property alias foreground: pinchArea.data
 
     // Make sure that _noGrabbing will be reset back to false (JB#42531)
     Component.onDestruction: if (!visible) pageStack._noGrabbing = false
@@ -33,14 +33,14 @@ SilicaFlickable {
     // Override SilicaFlickable's pressDelay because otherwise it will
     // block touch events going to PinchArea in certain cases.
     pressDelay: 0
-    interactive: !dragDetector.horizontalDragUnused
+//    interactive: !dragDetector.horizontalDragUnused
     ScrollDecorator { color: Theme.highlightDimmerColor }
 
     Binding { // Allow page navigation when panning the document near the top or bottom edge
         target: pageStack
         when: flickable.visible
         property: "_noGrabbing"
-        value: dragDetector.horizontalDragUnused
+//        value: dragDetector.horizontalDragUnused
     }
 
     Connections {
@@ -52,7 +52,7 @@ SilicaFlickable {
         }
     }
 
-    DragDetectorItem {
+/*    DragDetectorItem {
         id: dragDetector
         flickable: flickable
         anchors.fill: parent
@@ -64,4 +64,5 @@ SilicaFlickable {
             enabled: !pageStack.dragInProgress
         }
     }
+*/
 }

@@ -67,10 +67,11 @@ install(FILES
     DESTINATION ${AURORAOS_SHARED_LIBRARY_DIR})
 # end of libdjvu
 
+
 #set(CALLIGRA_QML_PLUGIN_DIR ${CMAKE_INSTALL_LIBDIR}/calligra CACHE PATH "The location of the Calligra QtQuick Components")
 configure_file(config.h.in config.h)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x -fPIC -pie -rdynamic -Wall")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x -fPIC -pie -rdynamic -Wall -Wl,-rpath=/usr/share/djvu-viewer/lib")
 
 add_subdirectory(plugin)
 add_subdirectory(djvu)
@@ -104,7 +105,7 @@ set(djvuviewer_TS_SRCS
 create_translation(engen_qm_file ${CMAKE_BINARY_DIR}/djvu-viewer.ts ${djvuviewer_TS_SRCS})
 
 add_executable(djvu-viewer ${djvuviewer_SRCS} ${engen_qm_file})
-qt5_use_modules(djvu-viewer Widgets Quick DBus)
+qt5_use_modules(djvu-viewer Quick DBus)
 target_link_libraries(djvu-viewer stdc++ ${QT_LIBRARIES} ${BOOSTER_LIBRARY} ${QTSPARQL_LIBRARY})
 
 install(TARGETS djvu-viewer DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
@@ -113,9 +114,9 @@ install(FILES
     DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications)
 install(FILES ${djvuviewer_QML_SRCS} DESTINATION ${CMAKE_INSTALL_PREFIX}/share/djvu-viewer/qml
 )
-install(FILES ${engen_qm_file} DESTINATION ${CMAKE_INSTALL_PREFIX}/share/translations)
+install(FILES ${engen_qm_file} DESTINATION ${CMAKE_INSTALL_PREFIX}/share/djvu-viewer/translations)
 #install(FILES ${CMAKE_BINARY_DIR}/djvu-viewer.ts DESTINATION ${CMAKE_INSTALL_PREFIX}/share/translations/source)
-install(FILES djvu-viewer.privileges DESTINATION ${CMAKE_INSTALL_PREFIX}/share/mapplauncherd/privileges.d)
+#install(FILES djvu-viewer.privileges DESTINATION ${CMAKE_INSTALL_PREFIX}/share/mapplauncherd/privileges.d)
 
 install(FILES icons/86x86/djvu-viewer.png
 DESTINATION share/icons/hicolor/86x86/apps)
@@ -131,4 +132,3 @@ DESTINATION share/icons/hicolor/128x128/apps)
 
 install(FILES icons/172x172/djvu-viewer.png
 DESTINATION share/icons/hicolor/172x172/apps)
-

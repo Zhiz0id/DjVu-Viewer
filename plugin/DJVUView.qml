@@ -19,7 +19,7 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import Sailfish.Silica.private 1.0
+//import Sailfish.Silica.private 1.0
 import DjVu.Viewer.DJVU 1.0 as DJVU
 import org.nemomobile.configuration 1.0
 
@@ -168,7 +168,7 @@ DocumentFlickable {
         _contentYAtGotoLink = -1.
     }
 
-    pinchArea.enabled: false // TODO: remove duplicate
+    //pinchArea.enabled: false // TODO: remove duplicate
     contentWidth: djvuCanvas.width
     contentHeight: djvuCanvas.height + header.height
 /*

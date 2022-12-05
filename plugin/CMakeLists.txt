@@ -12,7 +12,7 @@ set(plugin_SRCS
 )
 
 add_library(djvuviewerplugin MODULE ${plugin_SRCS})
-qt5_use_modules(djvuviewerplugin Widgets Quick)
+qt5_use_modules(djvuviewerplugin Quick)
 target_link_libraries(djvuviewerplugin stdc++ ${QT_LIBRARIES} ${SAILFISHSILICA_LIBRARIES} ${ICU_LIBRARIES})
 
 install(TARGETS djvuviewerplugin DESTINATION /usr/share/djvu-viewer/qml/DjVu/Viewer)

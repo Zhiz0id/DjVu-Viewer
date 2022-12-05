@@ -15,8 +15,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QApplication>
+//#include <QApplication>
 #include <QGuiApplication>
+//#include <auroraapp.h>
 #include <qqmldebug.h>
 #include <QtQml>
 #include <QQuickView>
@@ -39,9 +40,9 @@
 #include "dbusadaptor.h"
 
 namespace {
-QSharedPointer<QApplication> createApplication(int &argc, char **argv)
+QSharedPointer<QGuiApplication> createApplication(int &argc, char **argv)
 {
-    auto app = QSharedPointer<QApplication>(new QApplication(argc, argv));
+    auto app = QSharedPointer<QGuiApplication>(new QGuiApplication(argc, argv));
     //FIXME: We should be able to use a pure QGuiApplication but currently too much of
     //Calligra depends on QApplication.
     //QSharedPointer<QGuiApplication>(MDeclarativeCache::qApplication(argc, argv));
@@ -67,11 +68,12 @@ QSharedPointer<QQuickView> createView(const QString &file)
     qmlRegisterInterface<DocumentProvider>("DocumentProvider");
 
     QSharedPointer<QQuickView> view(MDeclarativeCache::qQuickView());
+    view->engine()->addImportPath(QML_INSTALL_DIR);
     view->setSource(QUrl::fromLocalFile(QML_INSTALL_DIR + file));
 
     new DBusAdaptor(view.data());
 
-    if (!QDBusConnection::sessionBus().registerObject("/org/djvu/Viewere", view.data()))
+    if (!QDBusConnection::sessionBus().registerObject("/org/djvu/Viewer", view.data()))
         qWarning() << "Could not register /org/djvu/Viewer D-Bus object.";
 
     if (!QDBusConnection::sessionBus().registerService("org.djvu.Viewer"))
@@ -90,7 +92,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     if (!qgetenv("QML_DEBUGGING_ENABLED").isEmpty()) {
         QQmlDebuggingEnabler qmlDebuggingEnabler;
     }
-
     auto app = createApplication(argc, argv);
     // Note, these must be said now, otherwise some plugins using QSettings
     // will get terribly confused when they fail to load properly.
