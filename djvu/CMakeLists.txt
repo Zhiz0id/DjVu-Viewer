@@ -29,5 +29,5 @@ include_directories(${djvulibre_prefix})
 target_link_libraries(djvuviewerdjvuplugin stdc++ ${QT_LIBRARIES} ${QT5XML_LIBRARIES} djvulibre_lib)
 add_dependencies(djvuviewerdjvuplugin djvulibre_lib)
 
-install(TARGETS djvuviewerdjvuplugin DESTINATION /usr/share/djvu-viewer/qml/DjVu/Viewer/DJVU)
-install(FILES qmldir DESTINATION /usr/share/djvu-viewer/qml/DjVu/Viewer/DJVU)
+install(TARGETS djvuviewerdjvuplugin DESTINATION /usr/share/${APP_NAME}/qml/DjVu/Viewer/DJVU)
+install(FILES qmldir DESTINATION /usr/share/${APP_NAME}/qml/DjVu/Viewer/DJVU)

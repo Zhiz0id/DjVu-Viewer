@@ -448,7 +448,7 @@ DocumentFlickable {
     ConfigurationValue {
         id: maxZoomLevelConfig
 
-        key: "/apps/djvu-viewer/settings/maxZoomLevel"
+        key: "/apps/djvuviewer/settings/maxZoomLevel"
         defaultValue: 10.
     }
 

@@ -141,13 +141,13 @@ Item {
 
         labelVisible: root.matchCount > 0 && !searchField.activeFocus
         //% "%n item(s) found"
-        label: qsTrId("djvu-viewer-lb-%n-matches", root.matchCount)
+        label: qsTrId("djvuviewer-lb-%n-matches", root.matchCount)
 
         placeholderText: (root.matchCount == 0 && !activeFocus)
             //% "No result"
-            ? qsTrId("djvu-viewer-search-no-result")
+            ? qsTrId("djvuviewer-search-no-result")
             //% "Search on document"
-            : qsTrId("djvu-viewer-search-document")
+            : qsTrId("djvuviewer-search-document")
 
         Connections {
             target: root

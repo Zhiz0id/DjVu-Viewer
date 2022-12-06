@@ -1,0 +1,17 @@
+[Desktop Entry]
+Type=Application
+Name=DjVu Viewer
+X-Amber-Translation-Id-Name=info.you-ra.djvuviewer-ap-name
+X-Amber-Translation-Catalog=info.you-ra.djvuviewer
+X-Nemo-Application-Type=silica-qt5
+Icon=info.you-ra.djvuviewer
+Exec=/usr/bin/info.you-ra.djvuviewer %U
+DBusActivatable=true
+MimeType=image/vnd.djvu;image/vnd.djvu+multipage;image/x.djvu;image/x-djvu;
+Comment=DjVu Viewer
+
+[X-Sailjail]
+Permissions=UserDirs;MediaIndexing;RemovableMedia
+ApplicationName=djvuviewer
+OrganizationName=info.you-ra
+ExecDBus=/usr/bin/info.you-ra.djvuviewer -prestart

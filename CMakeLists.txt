@@ -15,7 +15,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 #    FORCE
 #)
 #set(QML_IMPORT_PATH /usr/share/djvu-view/qml CACHE STRING "" FORCE) 
-#set(QT_QML_OUTPUT_DIRECTORY /usr/share/djvu-viewer)
+set(APP_NAME info.you-ra.djvuviewer)
 #cmake_policy(SET CMP0002 OLD)
 
 find_package(Qt5Core REQUIRED)
@@ -23,7 +23,6 @@ find_package(Qt5Quick REQUIRED)
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5DBus REQUIRED)
 find_package(Qt5LinguistTools REQUIRED)
-find_package(QtSparql REQUIRED)
 find_package(Booster REQUIRED)
 
 include(cmake/QtTranslationWithID.cmake)
@@ -33,11 +32,10 @@ include_directories(
     ${CMAKE_BINARY_DIR}
     ${QT_INCLUDES}
     ${BOOSTER_INCLUDE_DIR}
-    ${QTSPARQL_INCLUDE_DIR}
 )
 
 # paths
-set(AURORAOS_SHARED_LIBRARY_DIR /usr/share/djvu-viewer/lib/)
+set(AURORAOS_SHARED_LIBRARY_DIR /usr/share/${APP_NAME}/lib/)
 
 
 # libdjvu
@@ -71,7 +69,7 @@ install(FILES
 #set(CALLIGRA_QML_PLUGIN_DIR ${CMAKE_INSTALL_LIBDIR}/calligra CACHE PATH "The location of the Calligra QtQuick Components")
 configure_file(config.h.in config.h)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x -fPIC -pie -rdynamic -Wall -Wl,-rpath=/usr/share/djvu-viewer/lib")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x -fPIC -pie -rdynamic -Wall -Wl,-rpath=/usr/share/${APP_NAME}/lib")
 
 add_subdirectory(plugin)
 add_subdirectory(djvu)
@@ -102,33 +100,29 @@ set(djvuviewer_TS_SRCS
     qml/translations/StoreDescription.qml
 )
 
-create_translation(engen_qm_file ${CMAKE_BINARY_DIR}/djvu-viewer.ts ${djvuviewer_TS_SRCS})
+create_translation(engen_qm_file ${CMAKE_BINARY_DIR}/djvuviewer.ts ${djvuviewer_TS_SRCS})
 
-add_executable(djvu-viewer ${djvuviewer_SRCS} ${engen_qm_file})
-qt5_use_modules(djvu-viewer Quick DBus)
-target_link_libraries(djvu-viewer stdc++ ${QT_LIBRARIES} ${BOOSTER_LIBRARY} ${QTSPARQL_LIBRARY})
+add_executable(${APP_NAME} ${djvuviewer_SRCS} ${engen_qm_file})
+qt5_use_modules(${APP_NAME} Quick DBus)
+target_link_libraries(${APP_NAME} stdc++ ${QT_LIBRARIES} ${BOOSTER_LIBRARY})
 
-install(TARGETS djvu-viewer DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
+install(TARGETS ${APP_NAME} DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 install(FILES
-    djvu-viewer.desktop
+    ${APP_NAME}.desktop
     DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications)
-install(FILES ${djvuviewer_QML_SRCS} DESTINATION ${CMAKE_INSTALL_PREFIX}/share/djvu-viewer/qml
+install(FILES ${djvuviewer_QML_SRCS} DESTINATION ${CMAKE_INSTALL_PREFIX}/share/${APP_NAME}/qml
 )
-install(FILES ${engen_qm_file} DESTINATION ${CMAKE_INSTALL_PREFIX}/share/djvu-viewer/translations)
+install(FILES ${engen_qm_file} DESTINATION ${CMAKE_INSTALL_PREFIX}/share/${APP_NAME}/translations)
 #install(FILES ${CMAKE_BINARY_DIR}/djvu-viewer.ts DESTINATION ${CMAKE_INSTALL_PREFIX}/share/translations/source)
-#install(FILES djvu-viewer.privileges DESTINATION ${CMAKE_INSTALL_PREFIX}/share/mapplauncherd/privileges.d)
 
-install(FILES icons/86x86/djvu-viewer.png
+install(FILES icons/86x86/${APP_NAME}.png
 DESTINATION share/icons/hicolor/86x86/apps)
 
-install(FILES icons/108x108/djvu-viewer.png
+install(FILES icons/108x108/${APP_NAME}.png
 DESTINATION share/icons/hicolor/108x108/apps)
 
-install(FILES icons/128x128/djvu-viewer.png
+install(FILES icons/128x128/${APP_NAME}.png
 DESTINATION share/icons/hicolor/128x128/apps)
 
-#install(FILES icons/256x256/djvu-viewer.png
-#DESTINATION share/icons/hicolor/256x256/apps)
-
-install(FILES icons/172x172/djvu-viewer.png
+install(FILES icons/172x172/${APP_NAME}.png
 DESTINATION share/icons/hicolor/172x172/apps)

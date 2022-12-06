@@ -37,14 +37,14 @@ ContextMenu {
         text: (contextMenuLinks.url.indexOf("http:") === 0
                || contextMenuLinks.url.indexOf("https:") === 0)
               //% "Open in browser"
-              ? qsTrId("djvu-viewer-me-djvu-open-browser")
+              ? qsTrId("djvuviewer-me-djvu-open-browser")
               //% "Open in external application"
-              : qsTrId("djvu-viewer-me-djvu-open-external")
+              : qsTrId("djvuviewer-me-djvu-open-external")
         onClicked: Qt.openUrlExternally(contextMenuLinks.url)
     }
     MenuItem {
         //% "Copy to clipboard"
-        text: qsTrId("djvu-viewer-me-djvu-copy-link")
+        text: qsTrId("djvuviewer-me-djvu-copy-link")
         onClicked: Clipboard.text = contextMenuLinks.url
     }
 }

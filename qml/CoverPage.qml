@@ -28,7 +28,7 @@ CoverBackground {
     CoverPlaceholder {
         //: Cover placeholder shown when there are no documents
         //% "No documents"
-        text: qsTrId("djvu-viewer-la-cover_no_documents")
+        text: qsTrId("djvuviewer-la-cover_no_documents")
         icon.source: "image://theme/icon-launcher-office"
         visible: previewLoader.status !== Loader.Ready && fileListView.count == 0
     }

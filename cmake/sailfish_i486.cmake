@@ -18,9 +18,9 @@ add_custom_command(TARGET deploy POST_BUILD COMMAND rm ARGS -rf deploy)
 add_dependencies(deploy all)
 
 add_custom_target(run COMMENT "Running application...")
-add_custom_command(TARGET run POST_BUILD COMMAND ssh ARGS -p 2223 -i $ENV{HOME}/SailfishOS/vmshare/ssh/private_keys/1/nemo nemo@localhost "/usr/bin/invoker --type=j -s /usr/bin/djvu-viewer")
+add_custom_command(TARGET run POST_BUILD COMMAND ssh ARGS -p 2223 -i $ENV{HOME}/SailfishOS/vmshare/ssh/private_keys/1/nemo nemo@localhost "/usr/bin/invoker --type=j -s /usr/bin/info.you-ra.djvuviewer")
 add_dependencies(run deploy)
 
 add_custom_target(debug COMMENT "Debugging application...")
-add_custom_command(TARGET debug POST_BUILD COMMAND ssh ARGS -p 2223 -i $ENV{HOME}/SailfishOS/vmshare/ssh/private_keys/1/nemo nemo@localhost 'gdb -ex "run" /usr/bin/djvu-viewer')
+add_custom_command(TARGET debug POST_BUILD COMMAND ssh ARGS -p 2223 -i $ENV{HOME}/SailfishOS/vmshare/ssh/private_keys/1/nemo nemo@localhost 'gdb -ex "run" /usr/bin/info.you-ra.djvuviewer')
 add_dependencies(debug deploy)

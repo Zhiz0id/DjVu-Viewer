@@ -116,9 +116,9 @@ ContextMenu {
         text: contextMenuHighlight.annotation
               && contextMenuHighlight.annotation.contents == ""
               //% "Add a comment"
-              ? qsTrId("djvu-viewer-me-djvu-hl-anno-comment")
+              ? qsTrId("djvuviewer-me-djvu-hl-anno-comment")
               //% "Edit the comment"
-              : qsTrId("djvu-viewer-me-djvu-hl-anno-comment-edit")
+              : qsTrId("djvuviewer-me-djvu-hl-anno-comment-edit")
         onClicked: {
             if (contextMenuHighlight.annotation.contents == "") {
                 doc.create(contextMenuHighlight.annotation)
@@ -129,7 +129,7 @@ ContextMenu {
     }
     MenuItem {
         //% "Clear"
-        text: qsTrId("djvu-viewer-me-djvu-hl-anno-clear")
+        text: qsTrId("djvuviewer-me-djvu-hl-anno-clear")
         onClicked: contextMenuHighlight.annotation.remove()
     }*/
 }

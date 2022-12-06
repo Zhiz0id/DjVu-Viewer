@@ -179,37 +179,7 @@ void DocumentListModel::clear()
 int DocumentListModel::mimeTypeToDocumentClass(QString mimeType) const
 {
     DocumentClass documentClass = UnknownDocument;
-    if (mimeType == QLatin1String("application/vnd.oasis.opendocument.text")
-            || mimeType == QLatin1String("application/msword")
-            || mimeType == QLatin1String("application/vnd.openxmlformats-officedocument.wordprocessingml.document")
-            || mimeType == QLatin1String("application/vnd.openxmlformats-officedocument.wordprocessingml.template")
-            || mimeType == QLatin1String("application/vnd.ms-word.document.macroEnabled.12")
-            || mimeType == QLatin1String("application/vnd.ms-word.template.macroEnabled.12")
-            || mimeType == QLatin1String("application/rtf")) {
-        documentClass = TextDocument;
-    } else if (mimeType == QLatin1String("text/plain")) {
-        documentClass = PlainTextDocument;
-    } else if (mimeType == QLatin1String("application/vnd.oasis.opendocument.presentation")
-               || mimeType == QLatin1String("application/vnd.ms-powerpoint")
-               || mimeType == QLatin1String("application/vnd.openxmlformats-officedocument.presentationml.presentation")
-               || mimeType == QLatin1String("application/vnd.openxmlformats-officedocument.presentationml.template")
-               || mimeType == QLatin1String("application/vnd.openxmlformats-officedocument.presentationml.slideshow")
-               || mimeType == QLatin1String("application/vnd.ms-powerpoint.presentation.macroEnabled.12")
-               || mimeType == QLatin1String("application/vnd.ms-powerpoint.template.macroEnabled.12")
-               || mimeType == QLatin1String("application/vnd.ms-powerpoint.slideshow.macroEnabled.12") ) {
-        documentClass = PresentationDocument;
-    } else if (mimeType == QLatin1String("application/vnd.oasis.opendocument.spreadsheet")
-               || mimeType == QLatin1String("application/vnd.ms-excel")
-               || mimeType == QLatin1String("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-               || mimeType == QLatin1String("application/vnd.openxmlformats-officedocument.spreadsheetml.template")
-               || mimeType == QLatin1String("application/vnd.ms-excel.sheet.macroEnabled")
-               || mimeType == QLatin1String("application/vnd.ms-excel.sheet.macroEnabled.12")
-               || mimeType == QLatin1String("application/vnd.ms-excel.template.macroEnabled.12") 
-               || mimeType == QLatin1String("text/csv")) {
-        documentClass = SpreadSheetDocument;
-    } else if (mimeType == QLatin1String("application/pdf")) {
-        documentClass = PDFDocument;
-    } else if (mimeType == QLatin1String("image/vnd.djvu")
+    if (mimeType == QLatin1String("image/vnd.djvu")
                || mimeType == QLatin1String("image/vnd.djvu+multipage")
                || mimeType == QLatin1String("image/x-djvu")
                || mimeType == QLatin1String("image/x.djvu")) {

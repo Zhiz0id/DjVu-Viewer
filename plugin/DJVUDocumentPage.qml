@@ -192,13 +192,13 @@ DocumentPage {
         PullDownMenu {
             MenuItem {
                 //% "Delete"
-                text: qsTrId("djvu-viewer-me-delete")
+                text: qsTrId("djvuviewer-me-delete")
 
                 onClicked: window._mainPage.deleteSource(page.source)
             }
             MenuItem {
                 //% "Share"
-                text: qsTrId("djvu-viewer-me-share")
+                text: qsTrId("djvuviewer-me-share")
                 onClicked: {
                     shareAction.resources = [page.source]
                     shareAction.trigger()
@@ -285,7 +285,7 @@ DocumentPage {
                 toolbar.toggle(textTool)
                 if (textTool.first) {
                     //% "Tap where you want to add a note"
-                    noticeShow(qsTrId("djvu-viewer-la-notice-anno-text"))
+                    noticeShow(qsTrId("djvuviewer-la-notice-anno-text"))
                     textTool.first = false
                 }
             }
@@ -336,7 +336,7 @@ DocumentPage {
                 toolbar.toggle(highlightTool)
                 if (first) {
                     //% "Tap and move your finger over the area"
-                    noticeShow(qsTrId("djvu-viewer-la-notice-anno-highlight"))
+                    noticeShow(qsTrId("djvuviewer-la-notice-anno-highlight"))
                     first = false
                 }
             }
@@ -474,18 +474,18 @@ DocumentPage {
 
             InfoLabel {
                 text: doc.failure ? //% "Broken file"
-                                    qsTrId("djvu-viewer-me-broken-djvu")
+                                    qsTrId("djvuviewer-me-broken-djvu")
                                   : //% "Locked file"
-                                    qsTrId("djvu-viewer-me-locked-djvu")
+                                    qsTrId("djvuviewer-me-locked-djvu")
             }
 
             InfoLabel {
                 font.pixelSize: Theme.fontSizeLarge
                 color: Theme.rgba(Theme.highlightColor, Theme.opacityLow)
                 text: doc.failure ? //% "Cannot read the DJVU document"
-                                    qsTrId("djvu-viewer-me-broken-djvu-hint")
+                                    qsTrId("djvuviewer-me-broken-djvu-hint")
                                   : //% "Enter password to unlock"
-                                    qsTrId("djvu-viewer-me-locked-djvu-hint")
+                                    qsTrId("djvuviewer-me-locked-djvu-hint")
             }
 /*
             Item {
@@ -535,17 +535,17 @@ DocumentPage {
     ConfigurationValue {
         id: rememberPositionConfig
 
-        key: "/apps/djvu-viewer/settings/rememberPosition"
+        key: "/apps/djvuviewer/settings/rememberPosition"
         defaultValue: true
     }
     ConfigurationValue {
         id: highlightColorConfig
-        key: "/apps/djvu-viewer/settings/highlightColor"
+        key: "/apps/djvuviewer/settings/highlightColor"
         defaultValue: "#ffff00"
     }/*
     ConfigurationValue {
         id: highlightStyleConfig
-        key: "/apps/djvu-viewer/settings/highlightStyle"
+        key: "/apps/djvuviewer/settings/highlightStyle"
         defaultValue: "highlight"
 
         function toEnum(configVal) {

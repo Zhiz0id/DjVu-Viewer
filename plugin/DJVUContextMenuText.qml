@@ -30,7 +30,7 @@ ContextMenu {
     MenuItem {
         visible: !contextMenuText.annotation
         //% "Add note"
-        text: qsTrId("djvu-viewer-me-djvu-txt-anno-add")
+        text: qsTrId("djvuviewer-me-djvu-txt-anno-add")
         onClicked: {
             var annotation = textComponent.createObject(contextMenuText)
             annotation.color = "#202020"
@@ -48,13 +48,13 @@ ContextMenu {
     MenuItem {
         visible: contextMenuText.annotation
         //% "Edit"
-        text: qsTrId("djvu-viewer-me-djvu-txt-anno-edit")
+        text: qsTrId("djvuviewer-me-djvu-txt-anno-edit")
         onClicked: doc.edit(contextMenuText.annotation)
     }
     MenuItem {
         visible: contextMenuText.annotation
         //% "Delete"
-        text: qsTrId("djvu-viewer-me-djvu-txt-anno-clear")
+        text: qsTrId("djvuviewer-me-djvu-txt-anno-clear")
         onClicked: contextMenuText.annotation.remove()
     }*/
 }

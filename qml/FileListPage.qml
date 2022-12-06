@@ -65,13 +65,13 @@ Page {
     function getSortParameterName(parameter) {
         if (parameter === FilterModel.Name) {
             //% "name"
-            return qsTrId("djvu_viewer-me-sort_by_name")
+            return qsTrId("djvuviewer-me-sort_by_name")
         } else if (parameter === FilterModel.Type) {
             //% "type"
-            return qsTrId("djvu_viewer-me-sort_by_type")
+            return qsTrId("djvuviewer-me-sort_by_type")
         } else if (parameter === FilterModel.Date) {
             //% "date"
-            return qsTrId("djvu_viewer-me-sort_by_date")
+            return qsTrId("djvuviewer-me-sort_by_date")
         }
 
         return ""
@@ -111,7 +111,7 @@ Page {
                 id: pageHeader
                 //: Application title
                 //% "Documents"
-                title: qsTrId("djvu-viewer-he-apptitle")
+                title: qsTrId("djvuviewer-he-apptitle")
             }
 
             SearchField {
@@ -123,7 +123,7 @@ Page {
 
                 //: Document search field placeholder text
                 //% "Search documents"
-                placeholderText: qsTrId("djvu-viewer-tf-search-documents")
+                placeholderText: qsTrId("djvuviewer-tf-search-documents")
 
                 // We prefer lowercase
                 inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhPreferLowercase | Qt.ImhNoPredictiveText
@@ -158,15 +158,15 @@ Page {
 
             MenuItem {
                 text: !menu._searchEnabled ? //% "Show search"
-                                             qsTrId("djvu-viewer-me-show_search")
+                                             qsTrId("djvuviewer-me-show_search")
                                              //% "Hide search"
-                                           : qsTrId("djvu-viewer-me-hide_search")
+                                           : qsTrId("djvuviewer-me-hide_search")
                 onClicked: page.searchEnabled = !page.searchEnabled
             }
             
             MenuItem {
                 //% "Sort by: %1"
-                text: qsTrId("djvu-viewer-me-sort_by").arg(getSortParameterName(filteredModel.sortParameter))
+                text: qsTrId("djvuviewer-me-sort_by").arg(getSortParameterName(filteredModel.sortParameter))
                 onClicked: {
                     var obj = pageStack.animatorPush("SortTypeSelectionPage.qml")
                     obj.pageCompleted.connect(function(page) {
@@ -184,13 +184,13 @@ Page {
             y: listView.headerItem.y + pageHeader.height + searchField.height
                + (page.isPortrait ? Theme.itemSizeMedium : Theme.paddingLarge)
             text: page.provider.error ? //% "Error getting document list"
-                                        qsTrId("djvu-viewer-la-error_getting_documents")
+                                        qsTrId("djvuviewer-la-error_getting_documents")
                                       : page.provider.count == 0
                                         ? //: View placeholder shown when there are no documents
                                           //% "No documents"
-                                          qsTrId("djvu-viewer-la-no_documents")
+                                          qsTrId("djvuviewer-la-no_documents")
                                         : //% "No documents found"
-                                          qsTrId("djvu-viewer-la-not-found")
+                                          qsTrId("djvuviewer-la-not-found")
             opacity: (page.provider.ready && page.provider.count == 0)
                      || (searchText.length > 0 && listView.count == 0)
                      || page.provider.error
@@ -253,7 +253,7 @@ Page {
             onClicked: {
                 switch(model.fileDocumentClass) {
                 case DocumentListModel.DJVUDocument:
-                    pageStack.animatorPush("/usr/share/djvu-viewer/qml/DjVu/Viewer/DJVUDocumentPage.qml",
+                    pageStack.animatorPush("file:///usr/share/info.you-ra.djvuviewer/qml/DjVu/Viewer/DJVUDocumentPage.qml",
                                            { title: model.fileName, source: model.filePath, mimeType: model.fileMimeType, provider: page.provider })
                     break
                 default:
@@ -276,7 +276,7 @@ Page {
                     MenuItem {
                         //: Share a file
                         //% "Share"
-                        text: qsTrId("djvu-viewer-la-share")
+                        text: qsTrId("djvuviewer-la-share")
                         onClicked: {
                             shareAction.resources = [model.filePath]
                             shareAction.trigger()
@@ -289,7 +289,7 @@ Page {
                     MenuItem {
                         //: Delete a file from the device
                         //% "Delete"
-                        text: qsTrId("djvu-viewer-me-delete")
+                        text: qsTrId("djvuviewer-me-delete")
                         onClicked: {
                             listItem.deleteFile()
                         }

@@ -48,12 +48,12 @@ QSharedPointer<QGuiApplication> createApplication(int &argc, char **argv)
     //QSharedPointer<QGuiApplication>(MDeclarativeCache::qApplication(argc, argv));
 
     QTranslator *engineeringEnglish = new QTranslator(app.data());
-    if (!engineeringEnglish->load("djvu-viewer_eng_en", TRANSLATION_INSTALL_DIR))
+    if (!engineeringEnglish->load("djvuviewer_eng_en", TRANSLATION_INSTALL_DIR))
         qWarning("Could not load engineering english translation file!");
     QCoreApplication::installTranslator(engineeringEnglish);
 
     QTranslator *translator = new QTranslator(app.data());
-    if (!translator->load(QLocale::system(), "djvu-viewer", "-", TRANSLATION_INSTALL_DIR))
+    if (!translator->load(QLocale::system(), "djvuviewer", "-", TRANSLATION_INSTALL_DIR))
         qWarning() << "Could not load translations for" << QLocale::system().name().toLatin1();
     QCoreApplication::installTranslator(translator);
 
@@ -73,11 +73,11 @@ QSharedPointer<QQuickView> createView(const QString &file)
 
     new DBusAdaptor(view.data());
 
-    if (!QDBusConnection::sessionBus().registerObject("/org/djvu/Viewer", view.data()))
-        qWarning() << "Could not register /org/djvu/Viewer D-Bus object.";
+    if (!QDBusConnection::sessionBus().registerObject("/info/you-ra/djvuviewer", view.data()))
+        qWarning() << "Could not register /info/you-ra.info/djvuviewer D-Bus object.";
 
-    if (!QDBusConnection::sessionBus().registerService("org.djvu.Viewer"))
-        qWarning() << "Could not register org.djvu.Viewer D-Bus service.";
+    if (!QDBusConnection::sessionBus().registerService("info.you-ra.djvuviewer"))
+        qWarning() << "Could not register info.you-ra.djvuviewer D-Bus service.";
 
     return view;
 }
@@ -95,12 +95,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     auto app = createApplication(argc, argv);
     // Note, these must be said now, otherwise some plugins using QSettings
     // will get terribly confused when they fail to load properly.
-    app->setOrganizationName("org.djvu");
-    app->setApplicationName("Viewer");
+    app->setOrganizationName("info.you-ra");
+    app->setApplicationName("djvuviewer");
     auto view = createView("Main.qml");
 
     //% "Documents"
-    Q_UNUSED(QT_TRID_NOOP("djvu-viewer-ap-name"))
+    Q_UNUSED(QT_TRID_NOOP("djvuviewer-ap-name"))
 
     bool preStart = false;
     bool debug = false;

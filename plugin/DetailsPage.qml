@@ -46,13 +46,13 @@ Page {
                 id: detailsHeader
                 //: Details page title
                 //% "Details"
-                title: qsTrId("djvu-viewer-he-details")
+                title: qsTrId("djvuviewer-he-details")
             }
 
             DetailItem {
                 //: File path detail of the document
                 //% "File path"
-                label: qsTrId("djvu-viewer-la-filepath")
+                label: qsTrId("djvuviewer-la-filepath")
                 value: info.file
                 alignment: Qt.AlignLeft
             }
@@ -60,7 +60,7 @@ Page {
             DetailItem {
                 //: File size detail of the document
                 //% "Size"
-                label: qsTrId("djvu-viewer-la-filesize")
+                label: qsTrId("djvuviewer-la-filesize")
                 value: Format.formatFileSize(info.size)
                 alignment: Qt.AlignLeft
             }
@@ -68,7 +68,7 @@ Page {
             DetailItem {
                 //: File type detail of the document
                 //% "Type"
-                label: qsTrId("djvu-viewer-la-filetype")
+                label: qsTrId("djvuviewer-la-filetype")
                 value: info.mimeTypeComment
                 alignment: Qt.AlignLeft
             }
@@ -76,7 +76,7 @@ Page {
             DetailItem {
                 //: Last modified date of the document
                 //% "Last modified"
-                label: qsTrId("djvu-viewer-la-lastmodified")
+                label: qsTrId("djvuviewer-la-lastmodified")
                 value: Format.formatDate(info.lastModified, Format.DateFull)
                 alignment: Qt.AlignLeft
             }
@@ -90,11 +90,11 @@ Page {
                         case "image/x-djvu":
                             //: Page count of the text document
                             //% "Page Count"
-                            return qsTrId("djvu-viewer-la-pagecount")
+                            return qsTrId("djvuviewer-la-pagecount")
                         default:
                             //: Index count for unknown document types.
                             //% "Index Count"
-                            return qsTrId("djvu-viewer-la-indexcount")
+                            return qsTrId("djvuviewer-la-indexcount")
                     }
                 }
                 value: page.indexCount

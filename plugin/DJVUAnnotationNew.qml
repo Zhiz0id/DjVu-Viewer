@@ -36,9 +36,9 @@ Dialog {
             DialogHeader {
                 id: dialogHeader
                 //% "Save"
-                acceptText: qsTrId("djvu-viewer-he-txt-anno-save")
+                acceptText: qsTrId("djvuviewer-he-txt-anno-save")
                 //% "Cancel"
-                cancelText: qsTrId("djvu-viewer-he-txt-anno-cancel")
+                cancelText: qsTrId("djvuviewer-he-txt-anno-cancel")
             }
             TextArea {
                 id: areaContents
@@ -46,9 +46,9 @@ Dialog {
                 height: Math.max(flickable.height - dialogHeader.height, implicitHeight)
                 placeholderText: isTextAnnotation
                                  //% "Write a note…"
-                                 ? qsTrId("djvu-viewer-ta-text-annotation")
+                                 ? qsTrId("djvuviewer-ta-text-annotation")
                                  //% "Write a comment…"
-                                 : qsTrId("djvu-viewer-ta-comment-annotation")
+                                 : qsTrId("djvuviewer-ta-comment-annotation")
                 background: null
                 focus: true
             }

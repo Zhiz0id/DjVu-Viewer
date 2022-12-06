@@ -1,8 +1,8 @@
 %define __provides_exclude_from ^%{_datadir}/%{name}/.*$
 %define __requires_exclude ^lib.*\\.*$
 
-Name: djvu-viewer
-Version: 0.0.477
+Name: info.you-ra.djvuviewer
+Version: 0.0.492
 Release: 1
 Summary: DjVu Viewer
 License: GPLv2
@@ -13,7 +13,7 @@ BuildRequires: pkgconfig(Qt5Quick)
 BuildRequires: pkgconfig(Qt5DBus)
 BuildRequires: pkgconfig(Qt5Xml)
 BuildRequires: pkgconfig(sailfishsilica) >= 1.1.8
-BuildRequires: libqt5sparql-devel
+#BuildRequires: libqt5sparql-devel
 #BuildRequires: poppler-qt5-devel poppler-qt5 poppler-devel poppler
 BuildRequires: mapplauncherd-qt5-devel
 BuildRequires: cmake

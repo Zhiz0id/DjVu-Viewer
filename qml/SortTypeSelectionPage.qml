@@ -13,7 +13,7 @@ Page {
 
         header: PageHeader {
             //% "Sort by"
-            title: qsTrId("djvu_viewer-he-sort_by")
+            title: qsTrId("djvuviewer-he-sort_by")
         }
 
         delegate: BackgroundItem {
@@ -36,21 +36,21 @@ Page {
             sortType: FilterModel.Name
             //: Sort by name
             //% "Name"
-            name: qsTrId("djvu_viewer-me-sort_name")
+            name: qsTrId("djvuviewer-me-sort_name")
         }
 
         ListElement {
             sortType: FilterModel.Type
             //: Sort by type
             //% "Type"
-            name: qsTrId("djvu_viewer-me-sort_type")
+            name: qsTrId("djvuviewer-me-sort_type")
         }
 
         ListElement {
             sortType: FilterModel.Date
             //: Sort by date
             //% "Date"
-            name: qsTrId("djvu_viewer-me-sort_date")
+            name: qsTrId("djvuviewer-me-sort_date")
         }
     }
 }

@@ -1,7 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define QML_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/djvu-viewer/qml/"
-#define TRANSLATION_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/djvu-viewer/translations/"
+#define QML_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/info.you-ra.djvuviewer/qml/"
+#define TRANSLATION_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/info.you-ra.djvuviewer/translations/"
 
 #endif //CONFIG_H

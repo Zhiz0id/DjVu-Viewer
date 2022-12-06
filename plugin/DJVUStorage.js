@@ -18,7 +18,7 @@
  */
 
 var Settings = function(file) {
-    this.db = LocalStorage.openDatabaseSync("djvu-viewer", "1.0",
+    this.db = LocalStorage.openDatabaseSync("djvuviewer", "1.0",
                                             "Local storage for the document viewer.", 10000);
     this.source = file
 }

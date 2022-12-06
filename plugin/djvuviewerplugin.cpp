@@ -58,10 +58,10 @@ void DjVuViewerPlugin::initializeEngine(QQmlEngine *engine, const char *uri)
     Q_ASSERT(uri == QLatin1String("DjVu.Viewer"));
 
     Translator *engineeringEnglish = new Translator(engine);
-    engineeringEnglish->load("djvu-viewer_eng_en", TRANSLATION_INSTALL_DIR);
+    engineeringEnglish->load("djvuviewer_eng_en", TRANSLATION_INSTALL_DIR);
 
     Translator *translator = new Translator(engine);
-    translator->load(QLocale(), "djvu-viewer", "-", TRANSLATION_INSTALL_DIR);
+    translator->load(QLocale(), "djvuviewer", "-", TRANSLATION_INSTALL_DIR);
 
     QQmlExtensionPlugin::initializeEngine(engine, uri);
 }

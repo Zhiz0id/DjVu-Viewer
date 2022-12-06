@@ -41,7 +41,7 @@ Page {
 
         //: Page with DJVU index
         //% "Index"
-        header: PageHeader { title: qsTrId("djvu-viewer-he-djvu_index") }
+        header: PageHeader { title: qsTrId("djvuviewer-he-djvu_index") }
 
         ViewPlaceholder {
             id: placeholder
@@ -49,7 +49,7 @@ Page {
             //         && tocListView.model.ready
             //         && tocListView.model.count == 0
             //% "Document has no table of content"
-            text: qsTrId("djvu-viewer-me-no-toc")
+            text: qsTrId("djvuviewer-me-no-toc")
         }
         PageBusyIndicator {
             //running: !tocListView.model || !tocListView.model.ready
@@ -107,9 +107,9 @@ Page {
             anchors.verticalCenter: parent.verticalCenter
 
             //% "Go to page"
-            placeholderText: qsTrId("djvu-viewer-lb-goto-page")
+            placeholderText: qsTrId("djvuviewer-lb-goto-page")
             //% "document has %n pages"
-            label: qsTrId("djvu-viewer-lb-%n-pages", page.pageCount)
+            label: qsTrId("djvuviewer-lb-%n-pages", page.pageCount)
 
             // We enter page numbers
             validator: text.length ? _validator : null

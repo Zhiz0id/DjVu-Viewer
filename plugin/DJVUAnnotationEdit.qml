@@ -39,7 +39,7 @@ Page {
         PullDownMenu {
             MenuItem {
                 //% "Delete"
-                text: qsTrId("djvu-viewer-mi-delete-annotation")
+                text: qsTrId("djvuviewer-mi-delete-annotation")
                 onClicked: root.remove()
             }
         }
@@ -53,9 +53,9 @@ Page {
                        ? annotation.author
                        : (_isText
                           //% "Note"
-                          ? qsTrId("djvu-viewer-hd-text-annotation")
+                          ? qsTrId("djvuviewer-hd-text-annotation")
                           //% "Comment"
-                          : qsTrId("djvu-viewer-hd-comment-annotation"))
+                          : qsTrId("djvuviewer-hd-comment-annotation"))
             }
             TextArea {
                 id: areaContents
@@ -66,9 +66,9 @@ Page {
                 text: annotation ? annotation.contents : ""
                 placeholderText: _isText
                                  //% "Write a note…"
-                                 ? qsTrId("djvu-viewer-ta-text-annotation-edit")
+                                 ? qsTrId("djvuviewer-ta-text-annotation-edit")
                                  //% "Write a comment…"
-                                 : qsTrId("djvu-viewer-ta-comment-annotation-edit")
+                                 : qsTrId("djvuviewer-ta-comment-annotation-edit")
                 onTextChanged: {
                     if (annotation) {
                         annotation.contents = text
