@@ -64,7 +64,7 @@ ApplicationWindow {
         case "image/vnd.djvu+multipage":
         case "image/x.djvu":
         case "image/x-djvu":
-            handler = "DjVu.Viewer.DJVUDocumentPage"
+            handler = "file:///usr/share/info.you-ra.djvuviewer/qml/DjVu/Viewer/DJVUDocumentPage.qml"
             break
 
         default:
