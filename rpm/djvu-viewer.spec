@@ -35,8 +35,8 @@ Requires: sailfishsilica-qt5 >= 1.1.107
 #Requires: libqt5sparql-tracker-direct
 #Requires: sailjail-launch-approval
 #Requires: qt5-qtqml-import-webkitplugin
-Requires: nemo-qml-plugin-configuration-qt5
-Requires: nemo-qml-plugin-filemanager
+#Requires: nemo-qml-plugin-configuration-qt5
+#Requires: nemo-qml-plugin-filemanager
 #absent in emulator
 #Requires: sailfish-content-graphics
 #Requires: qt5-qtdeclarative-import-qtquick2plugin >= 5.4.0
