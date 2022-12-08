@@ -51,7 +51,8 @@ static const QString trackerDriver{"QTRACKER_DIRECT"};
 static const QString documentQuery{
     "SELECT ?name ?path ?size ?lastModified ?mimeType "
     "WHERE {"
-    "  GRAPH tracker:Documents {"
+    //"  GRAPH tracker:Documents {"
+    "{"
     "    SELECT nfo:fileName(?path) AS ?name"
     "      nfo:fileSize(?path) AS ?size"
     "      nfo:fileLastModified(?path) AS ?lastModified"
@@ -169,7 +170,7 @@ void TrackerDocumentProvider::searchFinished()
     auto fileSize = tmpFile.size();
     while (!stream.atEnd() && lineCount < fileSize) {
         ++lineCount;
-        auto string = stream.readLine();
+        auto string = stream.readAll();
         while (string.length() > 0) {
             auto numOfFields = 5;
             string.remove(0,44);
