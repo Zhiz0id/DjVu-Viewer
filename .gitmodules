@@ -1,3 +1,6 @@
 [submodule "dependencies/djvulibre"]
 	path = dependencies/djvulibre
 	url = https://git.code.sf.net/p/djvu/djvulibre-git
+[submodule "dependencies/libjpeg"]
+	path = dependencies/libjpeg
+	url = https://github.com/libjpeg-turbo/libjpeg-turbo.git

@@ -24,7 +24,6 @@ BuildRequires: gcc
 BuildRequires: gcc-c++ 
 BuildRequires: automake 
 BuildRequires: autoconf 
-BuildRequires: libjpeg-turbo-devel 
 BuildRequires: libtiff-devel
 #BuildRequires: libdjvulibre-devel >= 3.5.28
 #Requires: calligra-components
@@ -41,7 +40,6 @@ Requires: sailfishsilica-qt5 >= 1.1.107
 #Requires: qt5-qtdeclarative-import-qtquick2plugin >= 5.4.0
 #Requires: declarative-transferengine-qt5 >= 0.3.1
 #Requires: libdjvulibre21 >= 3.5.28
-#Requires: libjpeg-turbo
 #Requires: libtiff
 
 

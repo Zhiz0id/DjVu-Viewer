@@ -37,34 +37,73 @@ include_directories(
 # paths
 set(AURORAOS_SHARED_LIBRARY_DIR /usr/share/${APP_NAME}/lib/)
 
+# libjpeg-turbo
+set(turbojpeg_lib_dir ${CMAKE_BINARY_DIR}/dependencies/libjpeg)
+set(ENABLE_STATIC FALSE CACHE INTERNAL "disable static libjpeg")
+set(WITH_TURBOJPEG FALSE CACHE INTERNAL "without turbojpeg extension")
+
+#set(CMAKE_SKIP_INSTALL_RULES TRUE)
+file(COPY ${CMAKE_HOME_DIRECTORY}/dependencies/djvulibre
+    DESTINATION ${CMAKE_BINARY_DIR}/dependencies)
+
+ExternalProject_Add(libjpeg
+   SOURCE_DIR ${CMAKE_HOME_DIRECTORY}/dependencies/libjpeg
+   BINARY_DIR ${CMAKE_BINARY_DIR}/dependencies/libjpeg
+   BUILD_IN_SOURCE 0
+   CONFIGURE_COMMAND cmake -DENABLE_STATIC=FALSE -DWITH_TURBOJPEG=FALSE .
+   BUILD_COMMAND make -j4
+   INSTALL_COMMAND ""
+   )
+
+
+#add_subdirectory("dependencies/libjpeg" ) EXCLUDE_FROM_ALL)
+# end of libjpeg-turbo
 
 # libdjvu
-set(djvulibre_prefix ${CMAKE_HOME_DIRECTORY}/dependencies/djvulibre)
+#add_subdirectory("dependencies/djvulibre")
+
+set(djvulibre_prefix ${CMAKE_BINARY_DIR}/dependencies/djvulibre)
 set(djvulibre_configure ${djvulibre_prefix}/autogen.sh)
 set(djvulibre_build make -j4)
 set(djvulibre_lib_dir ${djvulibre_prefix}/libdjvu/.libs)
 
 #set(djvulibre_install make install)
+file(COPY ${CMAKE_HOME_DIRECTORY}/dependencies/djvulibre
+    DESTINATION ${CMAKE_BINARY_DIR}/dependencies)
 
 ExternalProject_Add(djvulibre
-   SOURCE_DIR ${djvulibre_prefix}
-   BUILD_IN_SOURCE 1
+   SOURCE_DIR ${CMAKE_HOME_DIRECTORY}/dependencies/djvulibre
+   BINARY_DIR ${djvulibre_prefix}
+   BUILD_IN_SOURCE 0
    CONFIGURE_COMMAND ${djvulibre_configure}
    BUILD_COMMAND ${djvulibre_build}
    INSTALL_COMMAND ""
    )
 
+add_dependencies(djvulibre libjpeg)
 include_directories(${djvulibre_prefix})
 add_library(djvulibre_lib STATIC IMPORTED)
 add_dependencies(djvulibre_lib djvulibre)
 set_target_properties(djvulibre_lib PROPERTIES IMPORTED_LOCATION ${djvulibre_lib_dir}/libdjvulibre.so)
+#install(DIRECTORY ${djvulibre_lib_dir}
+#    DESTINATION ${AURORAOS_SHARED_LIBRARY_DIR}
+#    FILES_MATCHING
+#    PATTERN "libdjvulibre.so*"
+#    )
+#install(DIRECTORY ${turbojpeg_lib_dir}
+#    DESTINATION ${AURORAOS_SHARED_LIBRARY_DIR}
+#    FILES_MATCHING
+#    PATTERN "libjpeg?so*"
+#    )
 install(FILES
     ${djvulibre_lib_dir}/libdjvulibre.so
     ${djvulibre_lib_dir}/libdjvulibre.so.21
     ${djvulibre_lib_dir}/libdjvulibre.so.21.7.0
+    ${turbojpeg_lib_dir}/libjpeg.so
+    ${turbojpeg_lib_dir}/libjpeg.so.62
+    ${turbojpeg_lib_dir}/libjpeg.so.62.3.0
     DESTINATION ${AURORAOS_SHARED_LIBRARY_DIR})
 # end of libdjvu
-
 
 #set(CALLIGRA_QML_PLUGIN_DIR ${CMAKE_INSTALL_LIBDIR}/calligra CACHE PATH "The location of the Calligra QtQuick Components")
 configure_file(config.h.in config.h)
