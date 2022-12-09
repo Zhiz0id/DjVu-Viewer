@@ -24,7 +24,7 @@
 //#include <QApplication>
 
 //#include "plaintextmodel.h"
-
+#include "statfileinfo.h"
 #include "config.h"
 
 class Translator : public QTranslator
@@ -51,6 +51,7 @@ void DjVuViewerPlugin::registerTypes(const char *uri)
 {
     Q_ASSERT(uri == QLatin1String("DjVu.Viewer"));
     //qmlRegisterType<PlainTextModel>(uri, 1, 0, "PlainTextModel");
+    qmlRegisterType<FileInfo>(uri, 1, 0, "FileInfo");
 }
 
 void DjVuViewerPlugin::initializeEngine(QQmlEngine *engine, const char *uri)

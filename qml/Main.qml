@@ -19,7 +19,6 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import DjVu.Viewer 1.0
 import DjVu.Viewer.Files 1.0
-import Nemo.FileManager 1.0
 
 ApplicationWindow {
     id: window

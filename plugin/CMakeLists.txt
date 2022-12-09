@@ -9,6 +9,8 @@ include_directories(
 
 set(plugin_SRCS
     djvuviewerplugin.cpp
+    statfileinfo.cpp
+    archiveinfo.cpp
 )
 
 add_library(djvuviewerplugin MODULE ${plugin_SRCS})
