@@ -1,7 +1,8 @@
 /*
  * Copyright (C) 2019 Open Mobile Platform LLC
  * Copyright (C) 2013-2014 Jolla Ltd.
- * Contact: Robin Burchell <robin.burchell@jolla.com>
+ * Copyright (C) 2023 Yura Beznos
+ * Contact: Yura Beznos <yura.beznos@you-ra.info>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,10 +26,6 @@
 
 #include <qglobal.h>
 
-//#include <QSparqlConnection>
-//#include <QSparqlResult>
-//#include <QSparqlError>
-
 #include "config.h"
 
 /* experiment */
@@ -42,13 +39,23 @@
 
 #include <QDBusArgument>
 #include <QDBusReply>
-/* end of experiment */
 
-//The Tracker driver to use. direct = libtracker-sparql based
-static const QString trackerDriver{"QTRACKER_DIRECT"};
+#include <QEventLoop>
+#include <QTimer>
+inline void delay(int millisecondsWait)
+{
+    QEventLoop loop;
+    QTimer t;
+    t.connect(&t, &QTimer::timeout, &loop, &QEventLoop::quit);
+    t.start(millisecondsWait);
+    loop.exec();
+}
+/* end of experiment */
 
 //The query to run to get files out of Tracker.
 static const QString documentQuery{
+    "PREFIX nfo: <http://tracker.api.gnome.org/ontology/v3/nfo#>"
+    "PREFIX nie: <http://tracker.api.gnome.org/ontology/v3/nie#> "
     "SELECT ?name ?path ?size ?lastModified ?mimeType "
     "WHERE {"
     //"  GRAPH tracker:Documents {"
@@ -159,41 +166,52 @@ void TrackerDocumentProvider::searchFinished()
     QMap<QString, QVariant> answerMap;
     static const QString method(QStringLiteral("Query"));
     QDBusInterface dbus_iface(TRACKER_SERVICE, TRACKER_PATH, TRACKER_INTERFACE, QDBusConnection::sessionBus());
-    QDBusReply<QDBusArgument> replay = dbus_iface.call(method, documentQuery /*SPARQL_QUERY*/, QVariant::fromValue(buffer), answerMap);
+    QDBusReply<QStringList> replay = dbus_iface.call(method, documentQuery /*SPARQL_QUERY*/, QVariant::fromValue(buffer), answerMap);
 
     const auto returnValue = replay.value();
 
     QStringList freshData;
     QTextStream stream(&tmpFile);
-    stream.seek(0);
-    auto lineCount = 0;
-    auto fileSize = tmpFile.size();
-    while (!stream.atEnd() && lineCount < fileSize) {
-        ++lineCount;
+    QString result;
+    QString tmp;
+    while (true) {
+        delay(10);
+        stream.seek(0);
         auto string = stream.readAll();
-        while (string.length() > 0) {
-            auto numOfFields = 5;
-            string.remove(0,44);
-
-            QStringList fileInfo;
-
-            while (numOfFields > 0) {
-                numOfFields--;
-                auto idx = string.indexOf(QChar('\0'));
-                auto first = string.left(idx);
-                fileInfo << first;
-                string.remove(0,idx+1);
-            }
-            d->model->addItem(
-                fileInfo[0],
-                fileInfo[1],
-                fileInfo[1].split('.').last(),
-                fileInfo[2].toInt(),
-                QDateTime::fromString(fileInfo[3], Qt::ISODate),
-                fileInfo[4]
-            );
-
+        if (string.length() > 0) {
+            tmp = string;
+            result.append(string);
+        } else {
+            break;
         }
+        if (string.length() > 0 && string.at(string.length()-1) == QChar('\0')) {
+            break;
+        }
+    }
+    tmpFile.close();
+
+    while (result.length() > 0) {
+        auto numOfFields = 5;
+        result.remove(0,44);
+
+        QStringList fileInfo;
+
+        while (numOfFields > 0) {
+            numOfFields--;
+            auto idx = result.indexOf(QChar('\0'));
+            auto first = result.left(idx);
+            fileInfo << first;
+            result.remove(0,idx+1);
+        }
+        d->model->addItem(
+            fileInfo[0],
+            fileInfo[1],
+            fileInfo[1].split('.').last(),
+            fileInfo[2].toInt(),
+            QDateTime::fromString(fileInfo[3], Qt::ISODate),
+            fileInfo[4]
+        );
+
     }
 
 
