@@ -128,6 +128,7 @@ set(djvuviewer_QML_SRCS
     qml/Main.qml
     qml/CoverFileItem.qml
     qml/SortTypeSelectionPage.qml
+    qml/AboutPage.qml
 )
 
 file(GLOB plugin_QML_SRCS plugin/*.qml)

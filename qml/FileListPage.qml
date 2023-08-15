@@ -112,6 +112,15 @@ Page {
                 //: Application title
                 //% "Documents"
                 title: qsTrId("djvuviewer-he-apptitle")
+                extraContent.children: [
+                    IconButton {
+                        objectName: "aboutButton"
+                        icon.source: "image://theme/icon-m-about"
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+                    }
+                ]
             }
 
             SearchField {
