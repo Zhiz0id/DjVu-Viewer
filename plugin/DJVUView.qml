@@ -97,7 +97,7 @@ DocumentFlickable {
 
         contentX = oldContentX * djvuCanvas.width / oldWidth
         //if (!contextHook.active) {
-        //    contentY = oldContentY * djvuCanvas.height / oldHeight
+        contentY = oldContentY * djvuCanvas.height / oldHeight
         //}
     }
 /*
