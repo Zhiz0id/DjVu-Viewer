@@ -50,9 +50,9 @@ ExternalProject_Add(libjpeg
    SOURCE_DIR ${CMAKE_HOME_DIRECTORY}/dependencies/libjpeg
    BINARY_DIR ${CMAKE_BINARY_DIR}/dependencies/libjpeg
    BUILD_IN_SOURCE 0
-   CONFIGURE_COMMAND cmake -DENABLE_STATIC=FALSE -DWITH_TURBOJPEG=FALSE .
+   CONFIGURE_COMMAND cmake -DENABLE_STATIC=FALSE -DWITH_TURBOJPEG=FALSE -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/dependencies/libjpeg .
    BUILD_COMMAND make -j4
-   INSTALL_COMMAND ""
+   INSTALL_COMMAND make install
    )
 
 
@@ -63,7 +63,7 @@ ExternalProject_Add(libjpeg
 #add_subdirectory("dependencies/djvulibre")
 
 set(djvulibre_prefix ${CMAKE_BINARY_DIR}/dependencies/djvulibre)
-set(djvulibre_configure ${djvulibre_prefix}/autogen.sh)
+set(djvulibre_configure ${djvulibre_prefix}/autogen.sh --disable-xmltools --disable-desktopfiles --with-jpeg=${CMAKE_BINARY_DIR}/dependencies/libjpeg/ --libdir=/usr/share/${APP_NAME}/lib/)
 set(djvulibre_build make -j4)
 set(djvulibre_lib_dir ${djvulibre_prefix}/libdjvu/.libs)
 
