@@ -2,7 +2,7 @@
 %define __requires_exclude ^lib.*\\.*$
 
 Name: info.you-ra.djvuviewer
-Version: 0.1.34100
+Version: 0.1.34119
 Release: 1
 Summary: DjVu Viewer
 License: GPLv2
