@@ -71,7 +71,12 @@ public:
             tocEntry->level = level;
             // convert the node to an element (sure it is)
             QDomElement e = n.toElement();
-            tocEntry->title = e.tagName();
+            if (!e.attribute("title").isNull()) {
+                tocEntry->title = e.attribute("title");
+            }
+            if (!e.attribute("PageNumber").isNull()) {
+                tocEntry->pageNumber = e.attribute("PageNumber").toInt();
+            }
 /*
             // Apparently we can have external links in the ToC.
             // Not doing this for now, but leave it in here as a note to self

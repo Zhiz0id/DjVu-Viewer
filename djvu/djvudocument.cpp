@@ -95,12 +95,12 @@ int DJVUDocument::pageCount() const
 
     return 0;
 }
-/*
+
 QObject* DJVUDocument::tocModel() const
 {
     return d->thread->tocModel();
 }
-
+/*
 QObject* DJVUDocument::searchModel() const
 {
     return d->searchModel;

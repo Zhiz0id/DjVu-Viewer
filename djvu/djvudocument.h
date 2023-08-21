@@ -35,7 +35,7 @@ class DJVUDocument : public QObject, public QQmlParserStatus
     Q_PROPERTY(QString source READ source WRITE setSource NOTIFY sourceChanged)
     Q_PROPERTY(QString autoSavePath READ autoSavePath WRITE setAutoSavePath NOTIFY autoSavePathChanged)
     Q_PROPERTY(int pageCount READ pageCount NOTIFY pageCountChanged)
-    //Q_PROPERTY(QObject* tocModel READ tocModel NOTIFY tocModelChanged)
+    Q_PROPERTY(QObject* tocModel READ tocModel NOTIFY tocModelChanged)
     Q_PROPERTY(bool loaded READ isLoaded NOTIFY documentLoadedChanged)
     Q_PROPERTY(bool failure READ isFailed NOTIFY documentFailedChanged)
     //Q_PROPERTY(bool locked READ isLocked NOTIFY documentLockedChanged)
